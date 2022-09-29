@@ -1,0 +1,162 @@
+
+About Us
+Pixie - Help Docs
+Webflow Plugin
+Pixie - CMS Image Optimizer
+Get A Free Consult
+
+Advanced Webflow Development with Visual Studio Code
+This blog helps you setup an efficient coding environment for Webflow development with custom code on top of existing Webflow sites. If you have been adding custom code for additional functionality, I am sure it is a pain working in the console if you are writing more than 50 lines of code.
+
+The usual way to add and test small snippets of code is through the Dev Tools but it is tiresome and unproductive, in our experience.
+
+Our setup:
+
+Visual Studio Code
+Webflow Page
+NPM - Node Package Manager
+This setup wouldn't be possible without Saif, more information about him at the end of the post.
+
+Open VSCode
+Add a new folder which we will be using to manage the whole development setup.
+
+
+Create and select the folder you want to use for the project. I named it "Custom-Webflow". You should see the folder added in the explorer.
+
+Create a JavaScript file with any name you like, I used 'app.js'.
+
+
+Now open up the Integrated Terminal on the project folder. We'll be setting up NPM to use Parcel which will minify and serve our files as a local server which we will add to the Webflow site later.
+
+
+Check for Node and NPM dependencies
+In the terminal make sure that the folder is the project folder you created and install NPM.
+
+First check if Node is already installed or not by running the following command in the terminal
+
+node -v
+
+Click to copy!
+
+
+
+If not, then go install Node JS in your machine from the site: https://nodejs.org/en/
+
+Once done, let's check if we have NPM installed or not.
+
+npm -v
+
+
+
+If not, you can visit and check the instructions on the NPM site: https://www.npmjs.com/get-npm
+
+Once you are sure, you have NPM installed let's initialize NPM on the project so that we can use NPM to install ParcelJS
+
+Initialize NPM
+npm init
+
+Click to copy!
+
+
+It will ask you a few questions to manage the NPM packages on your project, you can leave them empty and press enter on each. Make sure, app.js is selected for 'entry point' option:
+
+
+if not, then you can add the correct file name for it. We will use app.js to write the code we want to use on Webflow.
+
+A new file will be created called package.json, let's set up the command we have to run to make this easy in the future. Open 'package.json' and you should see something like this:
+
+
+		{
+    	"name": "custom-webflow",
+    	"version": "1.0.0",
+      "description": "",
+      "main": "app.js",
+      "scripts": {
+      	"test": "echo \\"Error: no test specified\\" && exit 1"
+      },
+      "author": "",
+      "license": "ISC"
+     }
+
+Click to copy!
+‍
+
+Under scripts, let's add the command 'start' which we will run to test our code.
+
+
+		{  
+    	"name": "custom-webflow",
+      "version": "1.0.0",
+      "description": "",
+      "main": "app.js",
+      "scripts": {
+      	"test": "echo \\"Error: no test specified\\" && exit 1",
+        "start": "parcel app.js"},
+      "author": "",
+      "license": "ISC"
+    }
+
+Click to copy!
+‍
+
+At this point if you try to run the npm command "npm start", it will not work because we haven't installed the package Parcel JS.
+
+npm i parcel
+
+Click to copy!
+
+
+You can find the same command on the NPM site: https://www.npmjs.com/package/parcel
+
+Once installed just run the NPM start command that we added in the package.json file.
+
+npm start
+
+Click to copy!
+‍
+
+
+Congrats the app.js file is hosted locally and can be injected in your Webflow page's header section.
+
+
+<script src="http://localhost:1234/app.js"></script>
+
+Click to copy!
+
+
+
+Publish the site and go to the page. Nothing will happen, you can check your website will remain working how it was since we haven't added any code in the app.js file.
+
+Let's add an alert to test this.
+
+alert('Webflow Custom Development By Little Big Things!');
+
+Now just refresh the page and you should see an alert confirming that the custom code development setup is working.
+
+
+‍
+
+Now, just start writing the code in Visual Studio Code and just hit refresh on the page to see the changes.
+
+Now this setup should make your custom development super productive and efficient. Happy Webflowing!
+
+This article wouldn't have been possible without Saif Ali who made this setup work and made our Webflow development process faster. I hope the community can leverage the same and be better at Custom Webflow Development.
+
+Saif Ali - Created our image optimizer app without prior knowledge of React and Node JS. He is currently looking for Web App Development Gigs. Anyone reach out to him. He is superb in how he delivered the app and was able to learn so much in the last year with us.
+
+Subscribe to learn how you can be successful with Webflow
+Email
+
+Sheridan, Wyoming, United States
+New York, New York, United States
+Bangalore, Karnataka, India
+Made with ❤️ remotely
+What we do
+Webflow Development
+Webflow CMS Image Optimizer
+Resources
+About Us
+Get Started With Pixie
+Blog
+Custom Webflow Development
+Copyright © 2022 Lil Big Things LLC. All rights reserved.
