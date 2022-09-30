@@ -1,9 +1,8 @@
 
-About Us
-Pixie - Help Docs
-Webflow Plugin
-Pixie - CMS Image Optimizer
-Get A Free Consult
+
+
+<script src="http://localhost:1234/app.js"></script>
+<script src="https://scripts.koalition.com/webflow-scripts/dist/app.js"></script>
 
 Advanced Webflow Development with Visual Studio Code
 This blog helps you setup an efficient coding environment for Webflow development with custom code on top of existing Webflow sites. If you have been adding custom code for additional functionality, I am sure it is a pain working in the console if you are writing more than 50 lines of code.
