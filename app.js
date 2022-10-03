@@ -5,14 +5,15 @@ $(document).ready(function () {
   gsap.registerPlugin(ScrollTrigger);
   gsap.defaults({ease: "power3"});
 
-
-  gsap.set(".b-card", {y: -100});
+if($(".b-card")[0]){
+  gsap.set(".b-card", {y: -100,opacity:0});
 
 ScrollTrigger.batch(".b-card", {
   //interval: 0.1, // time window (in seconds) for batching to occur. 
   //batchMax: 3,   // maximum batch size (targets)
   onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: {each: 0.15, grid: [1, 3]}, overwrite: true}),
   onLeave: batch => gsap.set(batch, {opacity: 0, y: -100, overwrite: true}),
+
   onEnterBack: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, overwrite: true}),
   onLeaveBack: batch => gsap.set(batch, {opacity: 0, y: 100, overwrite: true})
   // you can also define things like start, end, etc.
@@ -25,7 +26,8 @@ ScrollTrigger.batch(".b-card", {
 // positioning, so we use a "refreshInit" listener to reset the y temporarily. When we 
 // return a gsap.set() in the listener, it'll automatically revert it after the refresh()!
 ScrollTrigger.addEventListener("refreshInit", () => gsap.set(".b-card", {y: 0}));
-
+}
+if($(".a-card")[0]){
   let tl = gsap.timeline({
     // yes, we can add it to an entire timeline!
     scrollTrigger: {
@@ -123,4 +125,5 @@ tl.addLabel("start")
     
   });
   */
+  }
 });
