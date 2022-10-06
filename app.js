@@ -1,9 +1,101 @@
 import { gsap, Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
 $(document).ready(function () {
   gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(SplitText);
   gsap.defaults({ease: "power3"});
+
+let windowWidth = window.outerWidth;
+
+function createTextAnimations() {
+
+  // Word Animation
+  $(".word-animation").each(function (index) {
+
+    var parentSplit = new SplitText("h1", {
+      type: "lines",
+      linesClass: "split-words"
+    });
+    var childSplit = new SplitText("h1", { type: "words",linesClass: "split-lines" });
+    
+    gsap.from(childSplit.words.slice(11,childSplit.words.length), {
+      duration: 0.45, 
+      ease: "Power3.out", 
+      opacity:0,
+      yPercent: 40, 
+      stagger: 0.1,
+
+      scrollTrigger: {
+        trigger: this,
+        pin: false,   // pin the trigger element while active
+        start: "top center", // when the top of the trigger hits the top of the viewport
+        //end: "-=500", // end after scrolling 500px beyond the start
+        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+        
+      },
+      // Remove the extra markup when it's done
+      onComplete: () => {
+        parentSplit.revert();
+        childSplit.revert();
+      }
+    });
+    $(window).resize(function () {
+      if (window.outerWidth !== windowWidth) {
+        parentSplit.revert();
+        childSplit.revert();
+        location.reload();
+      }
+      windowWidth = window.outerWidth;
+    });
+
+  });
+}
+
+function createCardAnimations() {
+
+  // Word Animation
+
+  
+    gsap.from( ".c-card", {
+      duration: 0.45, 
+      ease: "Power3.out", 
+      opacity:0,
+      yPercent: 40, 
+      stagger:0.1,
+   
+      scrollTrigger: {
+        trigger: ".c-card",
+        pin: false,   // pin the trigger element while active
+        start: "top bottom", // when the top of the trigger hits the top of the viewport
+        end: "-=500", // end after scrolling 500px beyond the start
+        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+        
+      },
+      // Remove the extra markup when it's done
+      onComplete: () => {
+        parentSplit.revert();
+        childSplit.revert();
+      }
+    });
+
+
+
+}
+
+if($(".word-animation")[0]){
+  createTextAnimations();
+}
+
+if($(".c-card")[0]){
+  createCardAnimations();
+}
+
+
+
+
+
 
 if($(".b-card")[0]){
   gsap.set(".b-card", {y: -100,opacity:0});
@@ -31,6 +123,7 @@ if($(".a-card")[0]){
   let tl = gsap.timeline({
     // yes, we can add it to an entire timeline!
     scrollTrigger: {
+      duration:1,
       markers:false,
       trigger: ".a-card-trigger",
       pin: false,   // pin the trigger element while active
